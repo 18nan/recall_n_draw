@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recall & Draw</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button id="darkBtn" onclick="toggleDark()">Dark</button>
+
+<div class="screen active" id="loginScreen">
+  <div class="auth-box">
+    <h2>Recall <i>&amp;</i> Draw</h2>
+    <p class="sub">Sign in to start playing</p>
+
+    <div class="field">
+      <label for="loginName">Username</label>
+      <input type="text" id="loginName" placeholder="Enter your name">
+    </div>
+    <div class="field">
+      <label for="loginEmail">Email</label>
+      <input type="email" id="loginEmail" placeholder="you@example.com">
+    </div>
+    <div class="field">
+      <label for="loginPass">Password <span style="color:#aaa;font-weight:normal">(min 6 chars)</span></label>
+      <div class="pw-wrap">
+        <input type="password" id="loginPass" placeholder="Enter password">
+        <button class="eye" onclick="togglePw('loginPass')">View</button>
+      </div>
+    </div>
+
+    <div class="remember-row">
+      <input type="checkbox" id="rememberMe">
+      <label for="rememberMe" style="margin:0;font-weight:normal">Remember me</label>
+    </div>
+
+    <div class="err-msg" id="loginErr"></div>
+
+    <div class="link-row">
+      <a onclick="forgotPassword()">Forgot Password?</a>
+      <a href="#">Need help?</a>
+    </div>
+
+    <button class="btn btn-dark" onclick="login()">Log In</button>
+    <p class="auth-note">No account? <a onclick="show('signupScreen')">Sign Up</a></p>
+  </div>
+</div>
+
+<div class="screen" id="signupScreen">
+  <div class="auth-box">
+    <h2>Recall <i>&amp;</i> Draw</h2>
+    <p class="sub">Create your account</p>
+
+    <div class="field">
+      <label for="suName">Full Name</label>
+      <input type="text" id="suName" placeholder="Your name">
+    </div>
+    <div class="field">
+      <label for="suAge">Age</label>
+      <input type="number" id="suAge" placeholder="Your age" min="5" max="99">
+    </div>
+    <div class="field">
+      <label for="suEmail">Email</label>
+      <input type="email" id="suEmail" placeholder="you@example.com">
+    </div>
+    <div class="field">
+      <label for="suPass">Password <span style="color:#aaa;font-weight:normal">(min 6 chars)</span></label>
+      <div class="pw-wrap">
+        <input type="password" id="suPass" placeholder="Create password">
+        <button class="eye" onclick="togglePw('suPass')">View</button>
+      </div>
+    </div>
+    <div class="field">
+      <label for="suConfirm">Confirm Password</label>
+      <div class="pw-wrap">
+        <input type="password" id="suConfirm" placeholder="Repeat password">
+        <button class="eye" onclick="togglePw('suConfirm')">View</button>
+      </div>
+    </div>
+
+    <div class="err-msg" id="signupErr"></div>
+    <button class="btn btn-dark" onclick="signup()">Sign Up</button>
+    <p class="auth-note">Already have an account? <a onclick="show('loginScreen')">Log In</a></p>
+  </div>
+</div>
+
+<div class="screen" id="homeScreen">
+  <h1>Recall <i>&amp;</i> Draw</h1>
+  <p class="sub">See it. Remember it. Draw it.</p>
+
+  <div class="cards-row">
+    <div class="card" onclick="startLevel(1)">
+      <div class="num">01</div>
+      <b>Words</b>
+      <p>5 words shown for 3 seconds. Draw what you remember.</p>
+    </div>
+    <div class="card" onclick="startLevel(2)">
+      <div class="num">02</div>
+      <b>Description</b>
+      <p>A short scene for 5 seconds. Draw it from memory.</p>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="memoryScreen">
+  <h2>Memorise!</h2>
+  <div id="memCountdown">3</div>
+  <div class="mem-box" id="memBox"></div>
+  <div class="mem-box" id="descBox"></div>
+  <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+</div>
+
+<div class="screen" id="drawScreen">
+  <h2 id="drawTitle">Draw what you remember</h2>
+
+  <div class="toolbar">
+    <div class="swatch active" style="background:#e63027" data-c="#e63027" onclick="pickColor(this)" title="Red"></div>
+    <div class="swatch" style="background:#ff7f00" data-c="#ff7f00" onclick="pickColor(this)" title="Orange"></div>
+    <div class="swatch" style="background:#f5c200" data-c="#f5c200" onclick="pickColor(this)" title="Yellow"></div>
+    <div class="swatch" style="background:#27ae60" data-c="#27ae60" onclick="pickColor(this)" title="Green"></div>
+    <div class="swatch" style="background:#2980b9" data-c="#2980b9" onclick="pickColor(this)" title="Blue"></div>
+    <div class="swatch" style="background:#4b0082" data-c="#4b0082" onclick="pickColor(this)" title="Indigo"></div>
+    <div class="swatch" style="background:#8b00ff" data-c="#8b00ff" onclick="pickColor(this)" title="Violet"></div>
+    <div class="swatch" style="background:#1a1a1a" data-c="#1a1a1a" onclick="pickColor(this)" title="Black"></div>
+    <input type="range" min="1" max="30" value="4" oninput="brushSize=this.value" style="width:80px;accent-color:#222;" title="Brush size">
+  </div>
+
+  <canvas id="drawCanvas" width="860" height="480"></canvas>
+  <br><br>
+  <button class="btn btn-outline" onclick="clearCanvas()">Clear</button>
+  <button class="btn btn-dark" style="width:auto" onclick="submitDrawing()">Submit</button>
+</div>
+
+<div class="screen" id="resultScreen">
+  <h2 id="resultTitle">Done!</h2>
+  <p class="sub">Here is what you had to draw</p>
+
+  <div class="result-row">
+    <div class="result-col">
+      <div class="col-label" id="ansLabel">THE WORDS</div>
+      <div class="ans-box" id="ansBox"></div>
+    </div>
+    <div class="result-col">
+      <div class="col-label">YOUR DRAWING</div>
+      <canvas id="resultCanvas" width="300" height="200"></canvas>
+    </div>
+  </div>
+
+  <button class="btn btn-outline" onclick="goHome()">Home</button>
+  <button class="btn btn-dark" id="nextBtn" style="width:auto" onclick="startLevel(2)">Level 2</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
