@@ -179,9 +179,10 @@ function submitDrawing() {
     ansBox.textContent = currentDesc;
     document.getElementById('nextBtn').style.display = 'none';
   }
-  var rc = document.getElementById('resultCanvas').getContext('2d');
-  rc.clearRect(100, 100, 500, 500);
-  rc.drawImage(canvas, 100, 100, canvas.width, canvas.height, 100, 100, 500,500);
+  var rc = document.getElementById('resultCanvas');
+  var rcCtx = rc.getContext('2d');
+  rcCtx.clearRect(0, 0, rc.width, rc.height);
+  rcCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, rc.width, rc.height);
 }
 
 function goHome() { show('homeScreen'); }
