@@ -267,6 +267,28 @@ body.dark .swatch.active {
   display: block;
   margin: 0 auto; }
 
+/* RESULT LAYOUT */
+.result-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin: 20px auto; }
+.result-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; }
+.col-label {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #888;
+  text-transform: uppercase; }
+body.dark .col-label {
+  color: #aaa; }
+
 /* RESULTS */
 .ans-box {
   background: #fff;
