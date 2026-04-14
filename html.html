@@ -116,15 +116,15 @@
   <h2 id="drawTitle">Draw what you remember</h2>
 
   <div class="toolbar">
-    <div class="swatch active" style="background:#e63027" data-c="#e63027" onclick="pickColor(this)" title="Red"></div>
-    <div class="swatch" style="background:#ff7f00" data-c="#ff7f00" onclick="pickColor(this)" title="Orange"></div>
-    <div class="swatch" style="background:#f5c200" data-c="#f5c200" onclick="pickColor(this)" title="Yellow"></div>
-    <div class="swatch" style="background:#27ae60" data-c="#27ae60" onclick="pickColor(this)" title="Green"></div>
-    <div class="swatch" style="background:#2980b9" data-c="#2980b9" onclick="pickColor(this)" title="Blue"></div>
-    <div class="swatch" style="background:#4b0082" data-c="#4b0082" onclick="pickColor(this)" title="Indigo"></div>
-    <div class="swatch" style="background:#8b00ff" data-c="#8b00ff" onclick="pickColor(this)" title="Violet"></div>
-    <div class="swatch" style="background:#1a1a1a" data-c="#1a1a1a" onclick="pickColor(this)" title="Black"></div>
-    <input type="range" min="1" max="30" value="4" oninput="brushSize=this.value" style="width:80px;accent-color:#222;" title="Brush size">
+    <div class="swatch active" style="background:#e63027" data-c="#e63027" onclick="pickColor(this)"></div>
+    <div class="swatch" style="background:#ff7f00" data-c="#ff7f00" onclick="pickColor(this)"></div>
+    <div class="swatch" style="background:#f5c200" data-c="#f5c200" onclick="pickColor(this)"></div>
+    <div class="swatch" style="background:#27ae60" data-c="#27ae60" onclick="pickColor(this)"></div>
+    <div class="swatch" style="background:#2980b9" data-c="#2980b9" onclick="pickColor(this)"></div>
+    <div class="swatch" style="background:#4b0082" data-c="#4b0082" onclick="pickColor(this)"></div>
+    <div class="swatch" style="background:#8b00ff" data-c="#8b00ff" onclick="pickColor(this)"></div>
+    <div class="swatch" style="background:#1a1a1a" data-c="#1a1a1a" onclick="pickColor(this)"></div>
+    <input type="range" min="1" max="30" value="4" oninput="brushSize=this.value">
   </div>
 
   <canvas id="drawCanvas" width="860" height="480"></canvas>
@@ -142,6 +142,7 @@
       <div class="col-label" id="ansLabel">THE WORDS</div>
       <div class="ans-box" id="ansBox"></div>
     </div>
+
     <div class="result-col">
       <div class="col-label">YOUR MASTERPIECE</div>
       <canvas id="resultCanvas" width="300" height="200"></canvas>
