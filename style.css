@@ -268,6 +268,22 @@ body.dark .swatch.active {
   margin: 0 auto; }
 
 /* RESULTS */
+
+/* ✅ FIXED HERE */
+.result-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+  margin-top: 30px;
+}
+
+.result-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .ans-box {
   background: #fff;
   border: 1px solid #ddd;
@@ -280,9 +296,12 @@ body.dark .swatch.active {
   line-height: 1.9;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+}
+
 #resultCanvas {
   border: 1px solid #ddd;
   border-radius: 10px;
   background: #fff;
-  display: block; }
+  display: block;
+}
