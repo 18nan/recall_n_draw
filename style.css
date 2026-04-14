@@ -268,8 +268,6 @@ body.dark .swatch.active {
   margin: 0 auto; }
 
 /* RESULTS */
-
-/* ✅ FIXED HERE */
 .result-row {
   display: flex;
   justify-content: center;
