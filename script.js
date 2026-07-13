@@ -180,6 +180,7 @@ function submitDrawing() {
     document.getElementById('nextBtn').style.display = 'none';
   }
   var rc = document.getElementById('resultCanvas').getContext('2d');
+  rc.clearRect(0, 0, 300, 200);
   rc.clearRect( 0, 0, 300, 200);
   rc.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 300, 200);
 }
